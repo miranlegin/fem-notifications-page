@@ -89,20 +89,6 @@ select {
   --blue-400: hsl(219, 14%, 63%);
   --blue-700: hsl(219, 12%, 42%);
   --blue-900: hsl(224, 21%, 14%);
-
-  /*
-  
-### Neutral
-
-- White: hsl(0, 0%, 100%)
-- Very light grayish blue: hsl(210, 60%, 98%)
-- Light grayish blue 1: hsl(211, 68%, 94%)
-- Light grayish blue 2: hsl(205, 33%, 90%)
-- Grayish blue: hsl(219, 14%, 63%)
-- Dark grayish blue: hsl(219, 12%, 42%)
-- Very dark blue: hsl(224, 21%, 14%)
-
-  */
 }
 
 body {
@@ -212,12 +198,8 @@ body {
   flex-grow: 1;
 }
 
-.notification__row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  column-gap: 6px;
+.notification__row > *:not(:first-child) {
+  margin-left: 6px;
 }
 
 .notification__username {
@@ -227,6 +209,7 @@ body {
 }
 
 .notification__action {
+  display: inline-block;
   color: var(--blue-700);
 }
 
@@ -245,8 +228,10 @@ body {
 }
 
 .notification__icon {
+  display: inline-block;
   width: 0.5rem;
   aspect-ratio: 1;
+  margin-block: 0.15rem;
   border-radius: 50%;
   background-color: var(--red);
 }
