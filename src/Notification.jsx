@@ -1,10 +1,8 @@
-import { useState } from 'react';
-
 function Notification(props) {
   const {
+    id,
     status,
     avatar,
-    key,
     username,
     action,
     post,
@@ -39,12 +37,8 @@ function Notification(props) {
     </div>
   ) : null;
 
-  const [isRead, setIsRead] = useState(status);
-
-  function updateState() {}
-
   return (
-    <div key={key} className={notificationClass}>
+    <div key={id} className={notificationClass}>
       <div className="notification__avatar">
         <img src={`avatar/${avatar}`} alt="" />
       </div>

@@ -1,10 +1,12 @@
+import { useState } from 'react';
+
 import './App.css';
 
 import Header from './Header';
-import Notification from './Notification';
+import NotificationsList from './NotificationsList';
 
 function App() {
-  const NOTIFICATIONS = [
+  const DATA = [
     {
       id: 7,
       avatar: 'avatar-mark-webber.webp',
@@ -70,25 +72,28 @@ function App() {
     },
   ];
 
-  function clearNotificationsHandler() {}
+  const [notifications, setNotifications] = useState(DATA);
+
+  function clearNotificationsHandler() {
+    const clearedNotifications = notifications.map((notification) => ({
+      ...notification,
+      status: true,
+    }));
+
+    setNotifications(clearedNotifications);
+  }
+
+  const unreadNotifications = notifications.filter(
+    (notification) => notification.status === false
+  );
 
   return (
     <main className="container">
-      <Header onClearNotifications={clearNotificationsHandler} />
-      {NOTIFICATIONS.map((item) => (
-        <Notification
-          key={item.id}
-          avatar={item.avatar}
-          username={item.username}
-          action={item.action}
-          post={item.post}
-          group={item.group}
-          status={item.status}
-          time={item.time}
-          message={item.message}
-          picture={item.picture}
-        />
-      ))}
+      <Header
+        onClearNotifications={clearNotificationsHandler}
+        unread={unreadNotifications}
+      />
+      <NotificationsList data={notifications} />
     </main>
   );
 }
